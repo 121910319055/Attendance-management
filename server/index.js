@@ -1,4 +1,5 @@
 const express = require('express');
+const moment = require('moment');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
@@ -27,8 +28,12 @@ app.post('/insert', async (req, res) => {
 app.post('/attendance', (req, res) => {
   const attendanceData = req.body.attendanceData;
 
-  const date = new Date().setHours(0, 0, 0, 0); // Get the current date with time set to midnight
-
+  //const date = new Date().setHours(0, 0, 0, 0); // Get the current date with time set to midnight
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString();
+    // const parts = formattedDate.split('/'); // Split the string by "/"
+    // const date = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+    const date = moment(formattedDate, 'D/M/YYYY').toDate();
   // Create attendance records for each student
   const attendanceRecords = attendanceData.map(data => ({
     studentId: data.studentId,
