@@ -9,7 +9,7 @@ const StudentModel = require('./models/Student');
 const AttendanceModel = require('./models/Attendance2');
 app.use(express.json());
 app.use(cors());
-mongoose.connect('mongodb+srv://gurucharan:Premguru125@cluster.t9bqdyu.mongodb.net/food?retryWrites=true&w=majority', {
+mongoose.connect('mongodb://localhost:27017', {
     useNewUrlParser: true,
 });
 
